@@ -1,7 +1,7 @@
 import React from "react";
 import {  XMarkIcon } from "@heroicons/react/24/outline";
 import Select from "react-select";
-export default function FilterModel({ visible, onClose }) {
+export default function FilterModel({ visible, onClose: onClose }: { visible: boolean; onClose: () => void }) {
   const handleOnClose = (e:any) => {
     if (e.target.id === "container") onClose();
   };

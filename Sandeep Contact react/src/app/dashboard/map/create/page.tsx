@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { BASE_URL } from "../../../../../utils";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const importAction = [
   { label: "Insert Only", value: "insert" },
@@ -108,7 +109,7 @@ const CreateNewMap = () => {
   const [importTable, setImportTable] = useState([]);
 
   // get INformation from Url
-  const url = new URL(window.location.href);
+  const url = require('url');
   const searchParams = new URLSearchParams(url.search);
   const actionParam = searchParams.get("action"); // provide about action 
   const idValue = searchParams.get("id");
@@ -308,7 +309,7 @@ const CreateNewMap = () => {
     setTargetFieldName([...selectedTableRows, ...unmappedRows]);
     nextStep();
   };
-
+const router = useRouter();
   const importData = async () => {
     const importData = {
       name: mapName,
@@ -331,7 +332,7 @@ const CreateNewMap = () => {
         });
         if (response) {
           // console.log("response", response);
-          window.location.href = "/dashboard/map"
+          router.push("/dashboard/map")
         } else {
           console.error("Error creating post");
         }
@@ -348,7 +349,8 @@ const CreateNewMap = () => {
 
         if (response.ok) {
           console.log("Post created successfully");
-          window.location.href = "/dashboard/map"
+          router.push("/dashboard/map")
+          
         } else {
           console.error("Error creating post");
         }

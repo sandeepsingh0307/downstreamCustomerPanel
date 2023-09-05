@@ -2,8 +2,8 @@ import React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
-export default function GetContact({ visible, onClose }) {
-  const handleOnClose = (e) => {
+export default function GetContact({ visible, onClose: onClose }: { visible: boolean; onClose: () => void }) {
+  const handleOnClose = (e:any) => {
     if (e.target.id === "container") onClose();
   };
 

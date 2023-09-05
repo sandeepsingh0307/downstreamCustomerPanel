@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { BASE_URL } from "../../../../../../utils";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 // import { useHistory } from 'react-router-dom';
 
 const importAction = [
@@ -30,7 +31,7 @@ const people = [
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
-
+const router = useRouter();
 const CreateNewMap = ({ params }: { params: { id: string } }) => {
   const [step, setStep] = useState(1);
 
@@ -242,7 +243,7 @@ const CreateNewMap = ({ params }: { params: { id: string } }) => {
 
       if (response.ok) {
         console.log("Post created successfully");
-        window.location.href = "/map";
+        router.push("/map");
       } else {
         console.error("Error creating post");
       }
@@ -444,7 +445,7 @@ const CreateNewMap = ({ params }: { params: { id: string } }) => {
                             {
                               label: "No Relation",
                               value: "No Relation",
-                              isDisabled: true,
+                            //  isDisabled: true,
                             },
                           ]
                     }

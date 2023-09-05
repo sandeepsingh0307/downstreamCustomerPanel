@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { BASE_URL } from "../../../../../utils";
-
+import { useRouter } from "next/navigation";
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -13,6 +13,7 @@ const acces = [
 ]
 
 const CreateNewRole = () => {
+  const router = useRouter();
   const [roleName, setroleName] = useState("")
   const [roleAcces, setroleAcces] = useState("")
   const [selectedMapValues, setSelectedMapValues] = useState<string[]>([]);
@@ -83,7 +84,7 @@ const CreateNewRole = () => {
 
       if (response.ok) {
         console.log("Post created successfully");
-        window.location.href = "/dashboard/role";
+        router.push("/dashboard/role");
       } else {
         console.error("Error creating post");
       }

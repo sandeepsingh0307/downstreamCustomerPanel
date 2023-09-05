@@ -22,7 +22,7 @@ import { BASE_URL } from '../../../../../utils'
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-
+import { useRouter } from 'next/navigation';
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
@@ -40,12 +40,13 @@ const HeaderDropdown = () => {
   const [selectedItemId, setSelectedItemId] = useState<any>(null);
 
   const handleSelectItem = (itemId: any) => {
+    const router = useRouter();
     setSelectedItemId(itemId);
     const dataForUpdate = contactField.find((item: any) => item.id === itemId)
     if (dataForUpdate) {
       const dataJson = JSON.stringify(dataForUpdate);
       const encodedData = encodeURIComponent(dataJson);
-      window.location.href = `/dashboard/contacts?id=${itemId}&data=${encodedData}`;
+       router.push(`/dashboard/contacts?id=${itemId}&data=${encodedData}`);
     }
   };
   const MySwal = withReactContent(Swal)
@@ -57,7 +58,7 @@ const HeaderDropdown = () => {
   const handleOnClose = () => setShowMyModel(false)
 
   //  get id from url for preslections
-  const url = new URL(window.location.href);
+  const url = require('url');
   const params = new URLSearchParams(url.search);
   const id = params.get("id");
 

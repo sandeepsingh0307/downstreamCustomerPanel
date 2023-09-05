@@ -3,12 +3,13 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import Select from "react-select";
 import axios from "axios";
 import { BASE_URL } from "../../../../../utils";
-
+import { useRouter } from "next/navigation";
 
 const FilterModel = ({ visible, onClose, fieldToShow, dataForUpdate }: any) => {
   const [selectedFields, setSelectedFields] = useState([]);
   const [selectedName, setSelectedName] = useState("")
   const [errorMsgMapName, setErrorMsgMapName] = useState("");
+  const router = useRouter();
   const handleOnClose = (e: any) => {
     if (e.target.id === "container") onClose();
   };
@@ -34,7 +35,7 @@ const FilterModel = ({ visible, onClose, fieldToShow, dataForUpdate }: any) => {
         page: '1'
       });
       console.log("Data saved:", response.data);
-      window.location.href = "/dashboard/contacts"
+      router.push("/dashboard/contacts");
       onClose();
     } catch (error) {
       console.error("Error saving data:", error);

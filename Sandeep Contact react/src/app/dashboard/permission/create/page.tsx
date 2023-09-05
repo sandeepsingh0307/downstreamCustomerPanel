@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import MultiInput from "./multiInput";
 import { BASE_URL } from "../../../../../utils";
-
+import { useRouter } from "next/navigation";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -13,7 +13,7 @@ const CreateNewPermission = () => {
   const [input, setInput] = useState('');
   const [map, setMap] = useState('');
   const [action, setAction] = useState('');
-
+const router = useRouter();
   const handleInputChange = (field: any, value: any) => {
     if (field === 'input') setInput(value);
     if (field === 'map') setMap(value);
@@ -39,7 +39,7 @@ const CreateNewPermission = () => {
       console.log("response: " + response);
       if (response.ok) {
         console.log("Post created successfully");
-        window.location.href = "/dashboard/permission";
+        router.push("/dashboard/permission");
       } else {
         console.error("Error creating post");
       }

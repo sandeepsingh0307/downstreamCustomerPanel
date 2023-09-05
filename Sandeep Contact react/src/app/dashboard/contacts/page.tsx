@@ -12,7 +12,7 @@ import axios from "axios";
 import { BASE_URL } from "../../../../utils";
 
 
-export const fields = [
+ const fields = [
   {
     caption: "First Name",
     name: "FirstName",
@@ -127,7 +127,7 @@ export const fields = [
   },
 ];
 
-export const groups = [
+ const groups = [
   {
     caption: "And",
     name: "and",
@@ -137,7 +137,7 @@ export const groups = [
     name: "or",
   },
 ];
-export const filter: IFilterControlFilterValue = {
+ const filter: IFilterControlFilterValue = {
   groupName: "and",
   items: [],
 };
@@ -225,7 +225,8 @@ const ContactList = () => {
       { key: "RingLeadScore", title: "RingLead Score", dataType: DataType.String },
     ];
   useEffect(() => {
-    const url = new URL(window.location.href);
+
+    const url = require('url');
     const encodedData = url.searchParams.get("data");
     if (encodedData) {
       const decodedData = decodeURIComponent(encodedData);

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { BASE_URL } from "../../../../../../utils";
 import MultiInput from "../../create/multiInput";
-
+import { useRouter } from "next/navigation";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -21,6 +21,7 @@ const UpdateNewRole = () => {
   };
 
   const submitPermissions = async () => {
+    const router = useRouter();
     const importData = {
       module: map,
       action: action,
@@ -38,7 +39,7 @@ const UpdateNewRole = () => {
 
       if (response.ok) {
         console.log("Post created successfully");
-        window.location.href = "/dashboard/permission";
+        router.push("/dashboard/permission");
       } else {
         console.error("Error creating post");
       }

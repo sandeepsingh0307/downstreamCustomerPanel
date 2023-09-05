@@ -14,13 +14,13 @@ const handler = NextAuth({
       clientSecret: process.env.SALESFORCE_CLIENT_SECRET || "client_secret",
       wellKnown: process.env.SALESFORCE_URL_LOGIN || "well_known",
       idToken: true,      
-       userinfo: {
-         async request({ provider, tokens, client }) {
-           return await client.userinfo(tokens, {
-             params: provider.userinfo?.params,
-           });
-         },
-       },
+      //  userinfo: {
+      //    async request({ provider, tokens, client }) {
+      //      return await client.userinfo(tokens, {
+      //        params: provider.userinfo?.params,
+      //      });
+      //    },
+      //  },
       profile(profile) {
         return { id: profile.email, ...profile };
       },

@@ -54,7 +54,7 @@ const ActionMenu = ({ onItemSelected, selectedId }: any) => {
       }
     });
   };
-
+const router = useRouter();
   const handleItemClick = async (item: string, itemId: any) => {
 
     switch (item) {
@@ -84,7 +84,7 @@ const ActionMenu = ({ onItemSelected, selectedId }: any) => {
       // if data want to Import 
       case "Import":
         try {
-          window.location.href = `/dashboard/map/create?id=${itemId}&action=${item}`
+          router.push(`/dashboard/map/create?id=${itemId}&action=${item}`)
 
         } catch (error) {
           console.log("error: ", error);
@@ -93,7 +93,7 @@ const ActionMenu = ({ onItemSelected, selectedId }: any) => {
       case "Clone":
         try {
           await axios.get(`${BASE_URL}/map/cloneMapFieldById/${itemId}`);
-          window.location.href = "/dashboard/map"
+          router.push("/dashboard/map")
 
         } catch (error) {
           console.log("error: ", error);
@@ -101,7 +101,7 @@ const ActionMenu = ({ onItemSelected, selectedId }: any) => {
         break;
       case "Edit":
         try {
-          window.location.href = `/dashboard/map/create?id=${itemId}&action=${item}`
+          router.push(`/dashboard/map/create?id=${itemId}&action=${item}`)
 
         } catch (error) {
           console.log("error: ", error);
