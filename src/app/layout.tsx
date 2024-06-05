@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "../components/layout/ThemeProvider";
-import Navbar from "@/components/content/Navbar";
-import ToggleTheme from "@/components/layout/ToggleTheme";
+import { Header } from "../components/content/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,16 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          // themes={["dark", "light"]}
           disableTransitionOnChange
         >
-          <Navbar />
+          <Header />
           {children}
         </ThemeProvider>
       </body>

@@ -37,6 +37,7 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputProps>(
             " hide-password-toggle pr-10 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-10 disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
+          autoComplete="true"
           ref={ref}
           {...props}
         />
@@ -63,5 +64,7 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
+InputPassword.displayName = "InputPassword";
 
 export { Input, InputPassword };

@@ -24,8 +24,12 @@
 
 </p>
 
-<p>Shadcn Form
+<p>Shadcn Components Install
 
-    npx shadcn-ui@latest add form
+    npx shadcn-ui@latest add
+
+</p>
+
+<p>Shadcn Components to Installed
 
 </p>

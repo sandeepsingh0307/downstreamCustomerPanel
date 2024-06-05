@@ -64,7 +64,7 @@ const SignUpPage = () => {
         >
           <FormField
             control={form.control}
-            name="username"
+            name="name"
             render={({ field }) => (
               <FormItem>
                 {/* <FormLabel>Username</FormLabel> */}
