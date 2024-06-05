@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -58,6 +58,7 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      gradient: "linear-gradient(to left, #f7ba2b 0%, #ea5358 100%)",
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
