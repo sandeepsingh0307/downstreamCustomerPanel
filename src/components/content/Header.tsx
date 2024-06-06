@@ -32,7 +32,7 @@ export const Header = () => {
         </SheetContent>
       </Sheet>
       <Link href="/" className="mr-6 hidden lg:flex " prefetch={false}>
-        <h1 className="text-2xl md:text-4xl font-bold">
+        <h1 className="text-2xl md:text-4xl font-bold text-white">
           Company<span className="text-primary">Name</span>
         </h1>
       </Link>
@@ -42,7 +42,7 @@ export const Header = () => {
             return (
               <Link
                 href={item.href}
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors bg-transparent hover:bg-background"
+                className="group inline-flex h-9 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors bg-transparent hover:bg-background text-white"
                 // className="group inline-flex h-9 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors   focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50 bg-transparent"
                 prefetch={false}
                 key={`navDesktopItems${index}`}
