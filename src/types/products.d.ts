@@ -6,3 +6,10 @@ interface productItems {
     img: string;
     desc: string;
 }
+
+interface ProductImages {
+    id: number;
+    url: string;
+    href?: string;
+    alt: string;
+}

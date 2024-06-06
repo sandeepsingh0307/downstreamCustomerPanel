@@ -2,12 +2,23 @@ import { Sheet, SheetTrigger, SheetContent } from "../ui/sheet";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { navLinks } from "../../lib/constant";
-import BoxCenter from "../layout/BoxCenter";
-import ToggleTheme from "../layout/ToggleTheme";
+import BoxCenter from "./BoxCenter";
+import ToggleTheme from "./ToggleTheme";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import Image from "next/image";
+
+const userIsAuthenticated = false;
 
 export const Header = () => {
   return (
-    <header className="flex  justify-between lg:justify-evenly   h-20 w-full shrink-0 items-center px-4 md:px-6 bg-primary">
+    <header className="flex justify-between lg:justify-evenly   h-20 w-full shrink-0 items-center px-4 md:px-6 bg-primary">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="lg:hidden">
@@ -54,13 +65,45 @@ export const Header = () => {
         </nav>
         <BoxCenter>
           <ToggleTheme />
-          <Link
-            className="px-4 py-2 bg-background  hover:bg-secondary text-foreground  rounded-md"
-            href="/signin"
-          >
-            Sign In
-          </Link>
+          {!userIsAuthenticated ? (
+            <Link
+              className="px-4 py-2 bg-background  hover:bg-secondary text-foreground  rounded-md"
+              href="/signin"
+            >
+              Sign In
+            </Link>
+          ) : null}
         </BoxCenter>
+        <div>
+          {userIsAuthenticated ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="w-8 h-8 rounded-full"
+                >
+                  <Image
+                    src=""
+                    width="32"
+                    height="32"
+                    className="rounded-full"
+                    alt="Avatar"
+                  />
+                  <span className="sr-only">Toggle user menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                {/* <DropdownMenuItem>Support</DropdownMenuItem> */}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : null}
+        </div>
       </BoxCenter>
     </header>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import BoxCenter from "../layout/BoxCenter";
-import ProductCard from "./ProductCard";
+import ProductCard from "./product/ProductCard";
 
 type ProductListProps = {
   currentProductList: Array<productItems>;

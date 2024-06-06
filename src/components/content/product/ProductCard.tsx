@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardContent } from "../ui/card";
-import { Button } from "../ui/button";
+import { Card, CardContent } from "../../ui/card";
+import { Button } from "../../ui/button";
 import Image from "next/image";
 
 const dummyImage =
@@ -23,9 +23,9 @@ const ProductCard = ({ item }: ProductCardProps) => {
     >
       <Image
         alt="Profile picture"
+        src={item.img ? item.img : dummyImage}
         className="object-cover w-full -top-5"
         height="160"
-        src={item.img ? item.img : dummyImage}
         style={{ aspectRatio: "320/200", objectFit: "cover" }}
         width="320"
       />

@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 // import { signIn } from "next-auth/react";
 import {
   Form,
@@ -15,9 +15,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import BoxWrapper from "../layout/BoxWrapper";
-import { Input, InputPassword } from "../ui/input";
+} from "../../ui/form";
+import BoxWrapper from "../../layout/BoxWrapper";
+import { Input, InputPassword } from "../../ui/input";
 import Link from "next/link";
 
 const FormSchema = z.object({
