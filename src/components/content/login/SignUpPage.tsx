@@ -35,6 +35,8 @@ const FormSchema = z.object({
 });
 
 const SignUpPage = () => {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -46,6 +48,36 @@ const SignUpPage = () => {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     console.log(values);
+    if (typeof values.name !== "string") {
+      console.log("name is not a string");
+    } else {
+      try {
+        const res = await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            password: values.password,
+          }),
+        });
+        const resData = await res.json();
+
+        if (resData.statusCode == 409) {
+          form.setError(resData.user, {
+            type: "custom",
+            message: resData.message,
+          });
+        }
+        if (resData.statusCode == 200) {
+          router.push("/signin");
+        }
+      } catch (error) {
+        console.error(error + "something happen wrong");
+      }
+    }
   };
 
   return (
@@ -65,7 +97,7 @@ const SignUpPage = () => {
           <FormField
             control={form.control}
             name="name"
-            render={({ field }) => (
+            render={({ field }: { field: any }) => (
               <FormItem>
                 {/* <FormLabel>Username</FormLabel> */}
                 <FormControl>
@@ -80,7 +112,7 @@ const SignUpPage = () => {
           <FormField
             control={form.control}
             name="email"
-            render={({ field }) => (
+            render={({ field }: { field: any }) => (
               <FormItem>
                 {/* <FormLabel>Username</FormLabel> */}
                 <FormControl>
@@ -95,7 +127,7 @@ const SignUpPage = () => {
           <FormField
             control={form.control}
             name="password"
-            render={({ field }) => (
+            render={({ field }: { field: any }) => (
               <FormItem>
                 {/* <FormLabel>Username</FormLabel> */}
                 <FormControl>
@@ -117,7 +149,7 @@ const SignUpPage = () => {
           <FormField
             control={form.control}
             name="confirmPassword"
-            render={({ field }) => (
+            render={({ field }: { field: any }) => (
               <FormItem>
                 {/* <FormLabel>Username</FormLabel> */}
                 <FormControl>

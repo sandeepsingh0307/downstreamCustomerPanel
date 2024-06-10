@@ -7,6 +7,7 @@ export const navLinks = [
 export const productsList = [
     {
         id: 1,
+        url: "./products/biddingcard",
         name: "Bidding Card",
         currentbid: 1400,
         img: "https://m.media-amazon.com/images/I/61vGumezioL._SX679_.jpg",
@@ -15,13 +16,15 @@ export const productsList = [
     {
         id: 2,
         name: "Chatting Card",
+        url: "./products/chattingcard",
         currentbid: 1600,
         img: "https://m.media-amazon.com/images/I/71wMYNf8MZL._SX679_.jpg",
         desc: "t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution"
     },
     {
         id: 3,
-        name: "Product Card",
+        name: "Phone Card",
+        url: "./products/phonecard",
         currentbid: 1480,
         img: "https://m.media-amazon.com/images/I/61X3WrDm6VL._SX679_.jpg",
         desc: "t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution"

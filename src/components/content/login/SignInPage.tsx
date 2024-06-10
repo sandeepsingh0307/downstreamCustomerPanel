@@ -1,12 +1,10 @@
 "use client";
 import React from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { Button } from "../../ui/button";
-// import { signIn } from "next-auth/react";
 import {
   Form,
   FormControl,
@@ -44,7 +42,37 @@ const SignInPage = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    console.log(values);
+    if (typeof values.email !== "string") {
+      console.log("name is not a string");
+    } else {
+      try {
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password,
+          }),
+        });
+        const resData = await res.json();
+
+        if (resData.statusCode == 409) {
+          form.setError(resData.user, {
+            type: "custom",
+            message: resData.message,
+          });
+        }
+        if (resData.statusCode == 200) {
+          router.refresh();
+          router.push("/");
+        }
+      } catch (error) {
+        console.error(error + "something happen wrong");
+      }
+    }
   };
 
   return (
@@ -64,7 +92,7 @@ const SignInPage = () => {
           <FormField
             control={form.control}
             name="email"
-            render={({ field }) => (
+            render={({ field }: { field: any }) => (
               <FormItem>
                 {/* <FormLabel>Username</FormLabel> */}
                 <FormControl>
@@ -78,7 +106,7 @@ const SignInPage = () => {
           <FormField
             control={form.control}
             name="password"
-            render={({ field }) => (
+            render={({ field }: { field: any }) => (
               <FormItem>
                 {/* <FormLabel>Username</FormLabel> */}
                 <FormControl>
