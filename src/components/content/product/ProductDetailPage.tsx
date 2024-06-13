@@ -57,7 +57,9 @@ export const ProductDetailPage = ({ product }: ProductDetailPageProps) => {
           </div>
           <div className="space-y-4">
             <div className="flex items-baseline space-x-2">
-              <p className="text-3xl font-bold text-special">${currentprice}</p>
+              <p className="text-3xl font-bold text-redspecial">
+                ${currentprice}
+              </p>
               <p className="text-lg text-gray-500 line-through">${fullprice}</p>
             </div>
             <p className="text-sm text-gray-500">Incl. Vat plus shipping</p>
@@ -67,7 +69,7 @@ export const ProductDetailPage = ({ product }: ProductDetailPageProps) => {
             </div>
           </div>
           <div className="flex space-x-4">
-            <Button className="bg-special">Bid Now</Button>
+            <Button className="dark:bg-redspecial bg-special">Bid Now</Button>
             <Button variant="secondary">Checkout Now</Button>
           </div>
           <p className="text-sm text-gray-500">{desc}</p>
@@ -138,26 +140,3 @@ function StarIcon(props: any) {
     </svg>
   );
 }
-
-/* <header className="flex justify-between items-center py-6">
-        <h1 className="text-3xl font-bold">CompanyName</h1>
-        <nav className="flex space-x-4">
-          <Link
-            href="#"
-            className="text-gray-500 hover:text-gray-900"
-            prefetch={false}
-          >
-            Home
-          </Link>
-          <Link
-            href="#"
-            className="text-gray-500 hover:text-gray-900"
-            prefetch={false}
-          >
-            Asset Bundles
-          </Link>
-        </nav>
-        <Button variant="ghost">
-          <ShoppingCartIcon className="w-6 h-6" />
-        </Button>
-      </header> */

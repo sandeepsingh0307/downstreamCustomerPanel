@@ -3,11 +3,11 @@ import React from "react";
 
 type props = {
   params: {
-    productslug: string | number | undefined;
+    assetsslug: string | number | undefined;
   };
 };
 
-const ProductPage = () => {
+const AssetsBundlesPage = () => {
   // const data = getproductdataAPI()
   return (
     <div>
@@ -16,4 +16,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default AssetsBundlesPage;

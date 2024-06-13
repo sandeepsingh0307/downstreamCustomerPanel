@@ -20,6 +20,7 @@ const config = {
     extend: {
       colors: {
         special: "hsl(var(--special))",
+        redspecial: "hsl(var(--redspecial))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

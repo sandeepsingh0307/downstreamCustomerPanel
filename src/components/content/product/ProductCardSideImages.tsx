@@ -12,6 +12,7 @@ const ProductCardSideImages = ({ ImagesList }: ProductCardSideImagesProps) => {
   const [currentProductImage, setCurrentProductImage] = useState<ProductImages>(
     ImagesList[0]
   );
+  const [currentSideImages, setCurrentSideImages] = useState(ImagesList.length);
 
   const searchImageByID = (id: number) => {
     const newArr = ImagesList.filter((image) => image.id === id);
@@ -29,11 +30,17 @@ const ProductCardSideImages = ({ ImagesList }: ProductCardSideImagesProps) => {
     // console.log(typeof getComputedStyle(elem).height);
     // console.log(parseInt(getComputedStyle(elem).height, 10));
 
-    if (parseInt(getComputedStyle(elem).height, 10) >= 450) {
+    if (
+      parseInt(getComputedStyle(elem).height, 10) >= 400 &&
+      currentSideImages > 4
+    ) {
       elem.classList.add("scrollY");
       elem.classList.remove("scrollX");
     }
-    if (parseInt(getComputedStyle(elem).width, 10) >= 300) {
+    if (
+      parseInt(getComputedStyle(elem).width, 10) >= 300 &&
+      currentSideImages > 4
+    ) {
       elem.classList.add("scrollX");
       elem.classList.remove("scrollY");
     }

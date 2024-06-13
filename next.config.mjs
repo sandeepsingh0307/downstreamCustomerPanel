@@ -10,13 +10,17 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "m.media-amazon.com",
             },
+            {
+                protocol: "https",
+                hostname: "static.vecteezy.com",
+            },
         ],
     },
     async rewrites() {
         return [
             {
                 source: '/api/:slug',
-                destination: 'http://www.localhost:5000/api/:slug',
+                destination: `${process.env.SERVERHOST}/api/:slug`,
             },
         ]
     },

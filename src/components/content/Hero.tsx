@@ -1,7 +1,6 @@
 import React from "react";
 import { productsList } from "../../lib/constant";
 import ProductList from "./ProductList";
-import ProductDetailPage from "./product/ProductDetailPage";
 
 const Hero = () => {
   return (
@@ -9,9 +8,13 @@ const Hero = () => {
       <ProductList
         currentProductList={productsList}
         heading="Recent Products"
+        productCount={3}
       />
-      <ProductList currentProductList={productsList} heading="Top Products" />
-      <ProductDetailPage />
+      <ProductList
+        currentProductList={productsList}
+        heading="Top Products"
+        productCount={3}
+      />
     </>
   );
 };

@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { Button } from "../../ui/button";
+
 import {
   Form,
   FormControl,
@@ -17,6 +18,7 @@ import {
 import BoxWrapper from "../../layout/BoxWrapper";
 import { Input, InputPassword } from "../../ui/input";
 import Link from "next/link";
+import { useAuth } from "../../layout/AuthContext";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -28,10 +30,11 @@ const FormSchema = z.object({
 
 const SignInPage = () => {
   const router = useRouter();
+  const { isUserAuthenticated, login } = useAuth();
 
-  const SignIn_cancel = () => {
-    router.push("/");
-  };
+  // const SignIn_cancel = () => {
+  //   router.push("/");
+  // };
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -51,21 +54,21 @@ const SignInPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "include",
+          // credentials: "include",
           body: JSON.stringify({
             email: values.email,
             password: values.password,
           }),
         });
         const resData = await res.json();
-
-        if (resData.statusCode == 409) {
-          form.setError(resData.user, {
+        if (!res.ok) {
+          form.setError(resData, {
             type: "custom",
             message: resData.message,
           });
         }
-        if (resData.statusCode == 200) {
+        if (res.ok) {
+          login();
           router.refresh();
           router.push("/");
         }
@@ -75,6 +78,9 @@ const SignInPage = () => {
     }
   };
 
+  if (isUserAuthenticated) {
+    router.push("/");
+  }
   return (
     <BoxWrapper>
       <div className=" flex flex-col justify-center items-center py-10 px-5">

@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent } from "../../ui/card";
 import { Button } from "../../ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const dummyImage =
   "https://raw.githubusercontent.com/vivekcsein/githost/main/images/coding/cardimages/card_bgimage02.jpg";
@@ -13,6 +14,7 @@ type ProductCardProps = {
     desc: string;
     currentbid: number;
     img?: string;
+    href?: string;
   };
 };
 const ProductCard = ({ item }: ProductCardProps) => {
@@ -31,23 +33,25 @@ const ProductCard = ({ item }: ProductCardProps) => {
       />
       {/* <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600"></div> */}
       <CardContent className="p-4">
-        <h2 className="text-2xl font-bold text-foreground hover:text-special hover:cursor-default transition-all duration-200">
+        <h2 className="text-2xl font-bold text-foreground hover:text-redspecial hover:cursor-default transition-all duration-200">
           {item.name}
         </h2>
-        <p className="mt-2 text-foreground hover:text-special hover:cursor-default transition-all duration-200">
+        <p className="mt-2 text-foreground hover:text-redspecial hover:cursor-default transition-all duration-200">
           {item.desc}
         </p>
         <div className="flex items-center justify-evenly gap-0 mt-2">
           current bid is
-          <h3 className="text-special">{`  ${item.currentbid}`}$</h3>
+          <h3 className="text-redspecial">{`  ${item.currentbid}`}$</h3>
         </div>
         <div className="flex mt-4 space-x-2">
-          <Button
-            className="w-full bg-special hover:bg-gray-700 hover:text-white transition-all duration-200"
-            size="sm"
-          >
-            place your bid
-          </Button>
+          <Link href={item.href ? item.href : ""} className="w-full">
+            <Button
+              className="w-full bg-special hover:bg-gray-700 hover:text-white transition-all duration-200"
+              size="sm"
+            >
+              place your bid
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>

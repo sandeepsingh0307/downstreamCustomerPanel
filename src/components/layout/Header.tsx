@@ -1,7 +1,7 @@
-import { Sheet, SheetTrigger, SheetContent } from "../ui/sheet";
+"use client";
+import { Sheet, SheetContent } from "../ui/sheet";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { navLinks } from "../../lib/constant";
 import BoxCenter from "./BoxCenter";
 import ToggleTheme from "./ToggleTheme";
 import {
@@ -12,34 +12,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import Image from "next/image";
+// import Image from "next/image";
+import { useAuth } from "./AuthContext";
 
-const userIsAuthenticated = false;
+import HamburgerIcon from "./HamburgerIcon";
+import Navbar_mobile from "../content/Navbar/Navbar_mobile";
+import Navbar_desktop from "../content/Navbar/Navbar_desktop";
 
 export const Header = () => {
+  const { logout, user } = useAuth();
+
+  const isUserAuthenticated = true;
+
   return (
     <header className="flex justify-between lg:justify-evenly   h-20 w-full shrink-0 items-center px-4 md:px-6 bg-primary">
       <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="lg:hidden">
-            <MenuIcon className="h-6 w-6" />
-          </Button>
-        </SheetTrigger>
+        <HamburgerIcon />
         <SheetContent side="left">
-          <div className="grid gap-2 py-6">
-            {navLinks.map((item, index) => {
-              return (
-                <Link
-                  href={item.href}
-                  className="flex w-full items-center py-2 text-lg font-semibold bg-transparent"
-                  prefetch={false}
-                  key={`navMobileItems${index}`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
+          <Navbar_mobile />
         </SheetContent>
       </Sheet>
       <Link href="/" className="mr-6 hidden lg:flex " prefetch={false}>
@@ -48,24 +38,10 @@ export const Header = () => {
         </h1>
       </Link>
       <BoxCenter>
-        <nav className="ml-auto hidden lg:flex gap-6">
-          {navLinks.map((item, index) => {
-            return (
-              <Link
-                href={item.href}
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors bg-transparent hover:bg-background text-white"
-                // className="group inline-flex h-9 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors   focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50 bg-transparent"
-                prefetch={false}
-                key={`navDesktopItems${index}`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <Navbar_desktop />
         <BoxCenter>
           <ToggleTheme />
-          {!userIsAuthenticated ? (
+          {!isUserAuthenticated ? (
             <Link
               className="px-4 py-2 bg-background  hover:bg-secondary text-foreground  rounded-md"
               href="/signin"
@@ -75,21 +51,21 @@ export const Header = () => {
           ) : null}
         </BoxCenter>
         <div>
-          {userIsAuthenticated ? (
+          {isUserAuthenticated ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="w-8 h-8 rounded-full"
-                >
-                  <Image
+                <Button variant="ghost" size="icon" className=" h-fit w-fit ">
+                  <div className="flex flex-col py-2 px-4  justify-center items-center">
+                    Hello
+                    <span>{user?.name}</span>
+                  </div>
+                  {/* <Image
                     src=""
                     width="32"
                     height="32"
                     className="rounded-full"
                     alt="Avatar"
-                  />
+                  /> */}
                   <span className="sr-only">Toggle user menu</span>
                 </Button>
               </DropdownMenuTrigger>
@@ -99,7 +75,13 @@ export const Header = () => {
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 {/* <DropdownMenuItem>Support</DropdownMenuItem> */}
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <div
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  <DropdownMenuItem>Logout</DropdownMenuItem>
+                </div>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : null}
@@ -108,24 +90,3 @@ export const Header = () => {
     </header>
   );
 };
-
-function MenuIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
-    </svg>
-  );
-}

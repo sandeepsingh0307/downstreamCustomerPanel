@@ -2,8 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
+  /* blue hsl 213,
+    81%,
+    21%*/
+  --special: 213, 81%, 21%;
+  /*red hsl 344,
+    75%,
+    40% */
+  --redspecial: 344, 75%, 40%;
+  /* --special: 344 75.5% 40%; */
+
+  --textcolor : white .dark {
+    var(--textcolor): black;
+  }
+}
+
+/* :root {
   --background: 213 1% 95%;
   --foreground: 213 1% 0%;
   --card: 213 1% 90%;
@@ -47,6 +62,58 @@
   --border: 213 20% 18%;
   --input: 213 20% 18%;
   --ring: 213 81.3% 21%;
+  --radius: 0.5rem;
+} */
+
+:root {
+  /* --background: 344 0% 95%;
+  --foreground: 344 0% 0%; */
+  --background: 226 100% 100%;
+  /* --foreground: 226 5% 10%; */
+  /* --background: 226 50% 10%;
+  --foreground: 226 5% 100%; */
+  --card: 344 0% 90%;
+  --card-foreground: 344 0% 10%;
+  --popover: 344 0% 95%;
+  --popover-foreground: 344 95% 0%;
+  --primary: 344 75.5% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 344 10% 70%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 306 10% 85%;
+  --muted-foreground: 344 0% 35%;
+  --accent: 306 10% 80%;
+  --accent-foreground: 344 0% 10%;
+  --destructive: 0 50% 30%;
+  --destructive-foreground: 344 0% 90%;
+  --border: 344 20% 50%;
+  --input: 344 20% 18%;
+  --ring: 344 75.5% 40%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* --background: 344 10% 5%;
+  --foreground: 344 0% 90%; */
+  --background: 226 50% 10%;
+  --foreground: 226 5% 100%;
+  --card: 344 0% 0%;
+  --card-foreground: 344 0% 90%;
+  --popover: 344 10% 5%;
+  --popover-foreground: 344 0% 90%;
+  --primary: 344 75.5% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 344 10% 10%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 306 10% 15%;
+  --muted-foreground: 344 0% 60%;
+  --accent: 306 10% 15%;
+  --accent-foreground: 344 0% 90%;
+  --destructive: 0 50% 30%;
+  --destructive-foreground: 344 0% 90%;
+  --border: 344 20% 18%;
+  --input: 344 20% 18%;
+  --ring: 344 75.5% 40%;
   --radius: 0.5rem;
 }
 
@@ -166,4 +233,26 @@ p {
 
 .scrollY {
   @apply overflow-y-scroll max-h-[450px];
+}
+
+.MenuNav_List {
+  box-sizing: border-box;
+  border-radius: 8px;
+  border-bottom-color: var(--special);
+  background-color: var(--special);
+}
+
+.MenuNav_Item:hover {
+  text-decoration: underline;
+  text-underline-offset: calc(0.7rem + 3px);
+  text-decoration-thickness: 2px;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.editBtn {
+  border: 1px solid;
+  border-color: var(--foreground);
+  box-shadow: var(--foreground) 0px 4px 4px;
+  /* @apply shadow-lg shadow-background; */
 }
